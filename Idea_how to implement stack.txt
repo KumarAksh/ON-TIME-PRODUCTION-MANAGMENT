@@ -1,0 +1,119 @@
+#include<stdio.h>
+#include<stdlib.h>
+//implementation of stack 
+#define max 10
+ 
+struct stack{
+	int a[max];
+	int top;
+}s;
+
+int isfull();
+int isempty();
+void push();
+void pop();
+void display();
+
+
+int main()
+{
+	int ch;
+	s.top = -1;
+	do{
+		printf("Enter the choices\n1: push\n2: pop\n3: full stack\n4: empty stack\n5:display\n6: exit\n");
+		scanf("%d \n",&ch);
+		switch(ch)
+		{
+			case 1:
+				push();
+				break;
+			case 2:
+				pop();
+				break;
+			case 3:
+				if(isfull()){
+					printf("stack if full");
+				}
+				else{
+					printf("stack still have space for %d more elements\n",max-1-s.top);
+				}
+				break;
+			case 4:
+				if(isempty()){
+					printf("strack is empty\n");
+				}
+				else{
+					printf("it is not empty\n");
+				}
+				break;
+			case 5:
+				display();
+				break;
+			case 6:
+				exit(0);
+				break;
+			default:
+				printf("wrong input entered");
+				break;
+			}			
+			}while(ch!=6);
+			
+	return 0;
+}
+
+
+int isfull()
+{
+	if(s.top == max-1){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+
+int isempty(){
+	if(s.top == -1){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+
+void push()
+{
+	int item;
+	printf("enter the item to be pushed");
+	scanf("%d",&item);
+	if(isfull()){
+		printf("cannot be oushed");
+	}
+	else{
+		s.top++;
+		s.a[s.top] = item ;
+	}
+}
+
+
+void pop(){
+	if( isempty()){
+		printf("pop cannot be done\n");
+	}
+	else{
+		printf("element %d is popped from the sindex %d \n",s.a[s.top],s.top);
+		s.top-- ;
+	}
+}
+
+
+void display(){
+	int i = s.top;
+	for(i = s.top; i>=0; i--);
+	{
+		printf("element at indeax %d is %d \n",i, s.a[i]);
+	}
+}
+
